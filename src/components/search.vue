@@ -1,11 +1,15 @@
 <template>
   <div>
+    <Title :title=msg
+           :button_t=button_title>
+    </Title>
     <p>选择查询类型</p>
     <Select v-model="model2"
             style="width:150px">
       <Option v-for="item in cityList"
               :value="item.value"
-              :key="item.value">{{ item.label }}</Option>
+              :key="item.value"
+              @click.native="choseLei(item)">{{ item.label }}</Option>
     </Select>
     <div class="data_search">
       <div class="data_ym">
@@ -17,7 +21,8 @@
       <div class="data_slect">
         <p>选择层级</p>
         <Select v-model="model3"
-                style="width:150px">
+                style="width:150px"
+                @on-change='choseCeng'>
           <Option v-for="item in cityList"
                   :value="item.value"
                   :key="item.value">{{ item.label }}</Option>
@@ -52,13 +57,20 @@
                style="width:150px" />
       </div>
     </div>
-    <div class="submit">开始查询</div>
+    <div class="submit"
+         @click="beginSear">开始查询</div>
   </div>
 </template>
 <script>
+import Title from '../components/title'
 export default {
+  components: {
+    Title
+  },
   data () {
     return {
+      msg: '开始查询',
+      button_title: '查询历史',
       cityList: [
         {
           value: 'New York',
@@ -92,6 +104,17 @@ export default {
       value2: '',
       value3: '',
       value4: ''
+    }
+  },
+  methods: {
+    choseLei (item) {
+      this.cityListID = item.id
+      // console.log(item.value, item)
+    },
+    choseCeng (e) {
+    },
+    beginSear () {
+      console.log(this.value4, this.model2)
     }
   }
 }

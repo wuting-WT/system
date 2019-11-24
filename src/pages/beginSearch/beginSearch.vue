@@ -4,11 +4,6 @@
     <Head></Head>
     <Menu></Menu>
     <div class="search_right">
-      <div class="title">
-        <span>开始查询</span>
-
-        <button type="查询历史">查询历史</button>
-      </div>
       <Search></Search>
     </div>
 
@@ -17,7 +12,7 @@
 <script>
 import Head from '../../components/head'
 import Menu from '../../components/menu'
-import Search from '../../components/search'
+import Search from '../../components/Search'
 
 export default {
   name: 'beginSearch',
