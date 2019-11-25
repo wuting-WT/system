@@ -1,15 +1,21 @@
 <template>
   <div class="title">
     <span>{{title}}</span>
-    <div class="btn">{{button_t}}</div>
+    <div class="btn"
+         @click="componentC">{{button_t}}</div>
   </div>
 </template>
 <script>
 export default {
-  props: ['title', 'button_t'],
+  props: ['title', 'button_t', 'compon'],
   data () {
     return {
 
+    }
+  },
+  methods: {
+    componentC () {
+      flag = false
     }
   }
 }

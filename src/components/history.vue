@@ -25,14 +25,6 @@
       <Table height="auto"
              :columns="columns1"
              :data="historyData"></Table>
-      <!-- <Page :total="dataCount"
-            prev-text="Previous"
-            next-text="Next"
-            :page-size="pageSize"
-            show-total
-            @on-change="changepage"
-            @on-page-size-change="changepagesize"
-            class="page_fy" /> -->
       <Page :data2=data2
             :pageSize=pageSize
             @func="gethistoryData"></Page>

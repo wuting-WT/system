@@ -1,7 +1,8 @@
 <template>
   <div>
     <Title :title=msg
-           :button_t=button_title>
+           :button_t=button_title
+           :compon=compon>
     </Title>
     <p>选择查询类型</p>
     <Select v-model="model2"
@@ -63,14 +64,17 @@
 </template>
 <script>
 import Title from '../components/title'
+import History from '../components/history'
 export default {
   components: {
-    Title
+    Title,
+    History
   },
   data () {
     return {
       msg: '开始查询',
       button_title: '查询历史',
+      compon: History,
       cityList: [
         {
           value: 'New York',

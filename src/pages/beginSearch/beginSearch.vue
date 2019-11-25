@@ -12,7 +12,7 @@
 <script>
 import Head from '../../components/head'
 import Menu from '../../components/menu'
-import result from '../../components/progress'
+import result from '../../components/search'
 
 export default {
   name: 'beginSearch',
