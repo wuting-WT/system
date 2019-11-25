@@ -4,7 +4,7 @@
     <Head></Head>
     <Menu></Menu>
     <div class="search_right">
-      <Search></Search>
+      <result></result>
     </div>
 
   </div>
@@ -12,11 +12,11 @@
 <script>
 import Head from '../../components/head'
 import Menu from '../../components/menu'
-import Search from '../../components/Search'
+import result from '../../components/progress'
 
 export default {
   name: 'beginSearch',
-  components: { Head, Menu, Search }
+  components: { Head, Menu, result }
 }
 </script>
 <style scoped>

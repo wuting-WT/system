@@ -1,9 +1,7 @@
 <template>
   <div>
-    <div class="title">
-      <h2>查询历史</h2>
-      <div class="page">返回首页</div>
-    </div>
+    <Title :title=title
+           :button_t=button_t></Title>
     <div class="time">
       <div class="time_left">
         <DatePicker type="daterange"
@@ -27,20 +25,32 @@
       <Table height="auto"
              :columns="columns1"
              :data="historyData"></Table>
-      <Page :total="dataCount"
+      <!-- <Page :total="dataCount"
             prev-text="Previous"
             next-text="Next"
             :page-size="pageSize"
             show-total
             @on-change="changepage"
-            @on-page-size-change="changepagesize" />
+            @on-page-size-change="changepagesize"
+            class="page_fy" /> -->
+      <Page :data2=data2
+            :pageSize=pageSize
+            @func="gethistoryData"></Page>
     </div>
   </div>
 </template>
 <script>
+import Title from '../components/title'
+import Page from '../components/page'
 export default {
+  components: {
+    Title,
+    Page
+  },
   data () {
     return {
+      title: '查询历史',
+      button_t: '返回首页',
       value1: '',
       dataCount: 2,
       pageSize: 3,
@@ -173,27 +183,31 @@ export default {
     }
   },
   methods: {
-    // 获取历史记录信息
-    handleListApproveHistory () {
-      // 保存取到的所有数据
-      this.ajaxHistoryData = this.data2
-      this.dataCount = this.data2.length
-      // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
-      if (this.data2.length < this.pageSize) {
-        this.historyData = this.ajaxHistoryData
-      } else {
-        this.historyData = this.ajaxHistoryData.slice(0, this.pageSize)
-      }
-    },
-    changepage (index) {
-      var _start = (index - 1) * this.pageSize
-      var _end = index * this.pageSize
-      this.historyData = this.ajaxHistoryData.slice(_start, _end)
-    },
-    changepagesize (pageSize) {
-      this.pageSize = pageSize
-      this.handleListApproveHistory()
+    gethistoryData (dataHis, dataAjax) {
+      this.historyData = dataHis
+      this.ajaxHistoryData = dataAjax
     }
+    // // 获取历史记录信息
+    // handleListApproveHistory () {
+    //   // 保存取到的所有数据
+    //   this.ajaxHistoryData = this.data2
+    //   this.dataCount = this.data2.length
+    //   // 初始化显示，小于每页显示条数，全显，大于每页显示条数，取前每页条数显示
+    //   if (this.data2.length < this.pageSize) {
+    //     this.historyData = this.ajaxHistoryData
+    //   } else {
+    //     this.historyData = this.ajaxHistoryData.slice(0, this.pageSize)
+    //   }
+    // },
+    // changepage (index) {
+    //   var _start = (index - 1) * this.pageSize
+    //   var _end = index * this.pageSize
+    //   this.historyData = this.ajaxHistoryData.slice(_start, _end)
+    // },
+    // changepagesize (pageSize) {
+    //   this.pageSize = pageSize
+    //   this.handleListApproveHistory()
+    // }
   },
   created () {
     this.handleListApproveHistory()
@@ -202,6 +216,9 @@ export default {
 }
 </script>
 <style scoped>
+.page_fy {
+  margin-top: 40px;
+}
 .time {
   display: block;
   overflow: hidden;
